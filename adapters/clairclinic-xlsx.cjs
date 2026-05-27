@@ -77,7 +77,7 @@ module.exports = {
     const rows = XLSX.utils.sheet_to_json(ws, { defval: '' });
     console.log(`  ${rows.length} linhas raw`);
 
-    const REALIZADO_SET = new Set(['quitado', 'conciliado', 'confirmado', 'realizado']);
+    const REALIZADO_SET = new Set(['quitado', 'conciliado', 'confirmado', 'realizado', 'atrasado']);
 
     let idCounter = 0;
     const movimentos = [];
