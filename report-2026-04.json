@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-05-27T14:52:01.184Z",
+  "empresa": "Clair Clinic",
+  "periodo": "Abril/2026",
+  "year": 2026,
+  "month": 4,
+  "filter": "realizado",
+  "secoes": {
+    "visao_geral": {
+      "title": "Visao Geral",
+      "analysis": "No periodo de Abril/2026, a Clair Clinic registrou receita total de R$ 352.849,59 contra despesas de R$ 213.916,09, resultando em valor liquido de R$ 138.933,50 e margem liquida de 39,4%.  As principais fontes de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nA empresa manteve resultado positivo no periodo, demonstrando capacidade de geracao de caixa operacional. As maiores categorias de despesa foram OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07). A margem liquida esta em patamar saudavel para o segmento."
+    },
+    "receita": {
+      "title": "Receita",
+      "analysis": "A receita total realizada no periodo foi de R$ 352.849,59, distribuida ao longo de 1 meses com dados. As principais categorias de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nE recomendavel monitorar a concentracao de receita nas principais categorias para mitigar riscos de dependencia e buscar diversificacao das fontes de faturamento."
+    },
+    "despesa": {
+      "title": "Despesa",
+      "analysis": "As despesas totais no periodo somaram R$ 213.916,09, com as principais categorias sendo OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07).  A relacao despesa/receita ficou em 60,6%.\n\nAs despesas estao dentro de um patamar controlado em relacao a receita. Recomenda-se analise detalhada das categorias com maior crescimento para identificar oportunidades de otimizacao."
+    },
+    "fluxo_caixa": {
+      "title": "Fluxo de Caixa",
+      "analysis": "O fluxo de caixa do periodo apresentou entradas de R$ 352.849,59 e saidas de R$ 213.916,09, resultando em fluxo liquido de R$ 138.933,50. \n\nO fluxo de caixa acumulado permaneceu positivo, indicando boa gestao de liquidez. A analise dos saldos acumulados mes a mes permite identificar periodos de maior pressao sobre o caixa e planejar antecipadamente eventuais necessidades de financiamento."
+    },
+    "tesouraria": {
+      "title": "Tesouraria",
+      "analysis": "A posicao de tesouraria mostra um total recebido de R$ 352.849,59 e total pago de R$ 213.916,09 no periodo, com saldo liquido de R$ 138.933,50.\n\nA gestao de tesouraria deve manter atencao aos prazos de recebimento e pagamento para evitar descasamentos. O saldo positivo proporciona margem de seguranca para operacoes do proximo periodo."
+    },
+    "comparativo": {
+      "title": "Comparativo",
+      "analysis": "Com 1 meses de dados disponiveis, a base comparativa ainda esta em formacao.\n\nRecomenda-se acompanhar a evolucao mes a mes para identificar tendencias de crescimento ou retracao, permitindo ajustes estrategicos tempestivos."
+    }
+  },
+  "conclusao": "Em Abril/2026, a Clair Clinic registrou receita de R$ 352.849,59 e despesas de R$ 213.916,09, com resultado liquido de R$ 138.933,50. O mes apresentou resultado positivo.\n\nRecomenda-se acompanhar as categorias com maior variacao e manter controle rigoroso do fluxo de caixa."
+}
