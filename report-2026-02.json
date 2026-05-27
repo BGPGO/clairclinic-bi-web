@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T03:00:00.000Z",
+  "generated_at": "2026-05-27T16:22:53.269Z",
   "empresa": "Clair Clinic",
   "periodo": "Fevereiro/2026",
   "year": 2026,
@@ -7,29 +7,29 @@
   "filter": "realizado",
   "secoes": {
     "visao_geral": {
-      "title": "Visão Geral",
-      "analysis": "Em fevereiro, a Clair Clinic registrou receita de R$ 369.852,13 e despesas de R$ 191.103,32, superávit de R$ 178.748,81 e margem de 48,33%. A queda de 9,9% na receita é natural para o período.\n\nA margem manteve-se saudável acima de 48%. O aumento da obra (R$ 56.869, +65,6%) foi compensado pela menor carga tributária."
+      "title": "Visao Geral",
+      "analysis": "No periodo de Fevereiro/2026, a Clair Clinic registrou receita de R$201.148,61 e despesas de R$190.867,93, com resultado liquido de R$10.280,68 e margem de 5,1%. Principais receitas: 1.1.01.010.0016 PREENCHIMENTO POR ML (R$154.781,22), 1.1.01.010.0044 HARMONYCA (R$77.056,50), 1.1.01.010.0021 ULTRAFORMER MPT - FULLFACE (R$76.289,79).\n\nResultado positivo no periodo. Principais despesas: OBRACLINICA1135 (R$359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$200.000,00), 2.1.01.002.0003- Insumos (R$86.441,07)."
     },
     "receita": {
       "title": "Receita",
-      "analysis": "A receita totalizou R$ 369.852,13, com Transferências (R$ 168.704), Preenchimento por ML (R$ 25.968), Elleva X Corporal (R$ 20.124), Ultraformer MPT (R$ 19.275), Harmonyca (R$ 13.885) e Radiesse (R$ 13.626).\n\nDestaca-se o crescimento de Elleva X Corporal para o segundo procedimento mais realizado. Esta evolução pode indicar sazonalidade ou sucesso promocional."
+      "analysis": "Receita total de R$201.148,61 no periodo. 1.1.01.010.0016 PREENCHIMENTO POR ML (R$154.781,22), 1.1.01.010.0044 HARMONYCA (R$77.056,50), 1.1.01.010.0021 ULTRAFORMER MPT - FULLFACE (R$76.289,79).\n\nMonitorar concentracao de receita e buscar diversificacao."
     },
     "despesa": {
       "title": "Despesa",
-      "analysis": "As despesas somaram R$ 191.103,32: OBRACLINICA1135 (R$ 56.869, +65,6%), Retirada de Lucro (R$ 50.000), Aluguel (R$ 19.553) e Insumos (R$ 19.050).\n\nCustos operacionais excluindo obra e distribuição ficaram em R$ 84.234 (22,8% da receita), patamar eficiente."
+      "analysis": "Despesas totais de R$190.867,93. Principais: OBRACLINICA1135 (R$359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$200.000,00), 2.1.01.002.0003- Insumos (R$86.441,07). Relacao despesa/receita: 94,9%.\n\nDespesas controladas. Analisar categorias com maior crescimento."
     },
     "fluxo_caixa": {
       "title": "Fluxo de Caixa",
-      "analysis": "O fluxo de caixa foi positivo em R$ 178.748,81, redução de 21,6% vs. janeiro refletindo menor receita e mais investimento na obra.\n\nO acumulado de R$ 406.779 proporciona conforto para sustentar investimentos sem financiamento externo."
+      "analysis": "Entradas de R$201.148,61 e saidas de R$190.867,93, fluxo liquido de R$10.280,68.\n\nFluxo positivo, boa liquidez."
     },
     "tesouraria": {
       "title": "Tesouraria",
-      "analysis": "A tesouraria manteve-se sólida, absorvendo aumento da obra e elevação da distribuição. O investimento em Software (R$ 3.251) indica modernização.\n\nA folga acumulada permite manter cronograma de investimentos sem comprometer operação corrente."
+      "analysis": "Recebido R$201.148,61, pago R$190.867,93, saldo R$10.280,68.\n\nSaldo positivo, margem de seguranca adequada."
     },
     "comparativo": {
       "title": "Comparativo",
-      "analysis": "Queda de 9,9% na receita vs. janeiro, mas margem de 48,33% permaneceu robusta. A obra subiu 65,6% e a Retirada de Lucro para R$ 50.000.\n\nElleva X Corporal ganhou protagonismo, positivo para diversificação."
+      "analysis": "Analise comparativa do periodo Fevereiro/2026 em andamento.\n\nAcompanhar evolucao mensal para identificar tendencias."
     }
   },
-  "conclusao": "Fevereiro manteve padrão positivo com R$ 178.749 de superávit e margem de 48,33%. A clínica gera valor mesmo em meses de menor movimento.\n\nRecomenda-se: (1) avaliar tendência da Elleva X Corporal; (2) monitorar custos da obra; e (3) manter distribuição alinhada à geração."
+  "conclusao": "Em Fevereiro/2026: receita R$201.148,61, despesa R$190.867,93, liquido R$10.280,68.\n\nManter controle de fluxo de caixa."
 }

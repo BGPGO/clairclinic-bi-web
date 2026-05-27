@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T03:00:00.000Z",
+  "generated_at": "2026-05-27T16:22:53.271Z",
   "empresa": "Clair Clinic",
   "periodo": "Abril/2026",
   "year": 2026,
@@ -7,29 +7,29 @@
   "filter": "realizado",
   "secoes": {
     "visao_geral": {
-      "title": "Visão Geral",
-      "analysis": "Em abril, a Clair Clinic registrou receita de R$ 352.849,59 e despesas de R$ 213.916,09, superávit de R$ 138.933,50 e margem de 39,37%. A receita recuou 9,6% vs. março, mas despesas caíram 5,2%.\n\nOs gastos com obra (R$ 74.094) recuaram 20,6%, sugerindo finalização de etapa. A margem próxima de 40% permanece saudável."
+      "title": "Visao Geral",
+      "analysis": "No periodo de Abril/2026, a Clair Clinic registrou receita de R$199.307,66 e despesas de R$213.746,10, com resultado liquido de -R$14.438,44 e margem de -7,2%. Principais receitas: 1.1.01.010.0016 PREENCHIMENTO POR ML (R$154.781,22), 1.1.01.010.0044 HARMONYCA (R$77.056,50), 1.1.01.010.0021 ULTRAFORMER MPT - FULLFACE (R$76.289,79).\n\nResultado negativo, atencao a estrutura de custos. Principais despesas: OBRACLINICA1135 (R$359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$200.000,00), 2.1.01.002.0003- Insumos (R$86.441,07)."
     },
     "receita": {
       "title": "Receita",
-      "analysis": "A receita totalizou R$ 352.849,59: Transferências (R$ 153.542), Preenchimento por ML (R$ 32.866), Harmonyca no melhor mês (R$ 21.708), Sculptra com forte crescimento (R$ 15.607), Ultraformer (R$ 15.537).\n\nDestaque para Harmonyca (+24,5% vs. março) e Sculptra (+41,8%), indicando sucesso na diversificação."
+      "analysis": "Receita total de R$199.307,66 no periodo. 1.1.01.010.0016 PREENCHIMENTO POR ML (R$154.781,22), 1.1.01.010.0044 HARMONYCA (R$77.056,50), 1.1.01.010.0021 ULTRAFORMER MPT - FULLFACE (R$76.289,79).\n\nMonitorar concentracao de receita e buscar diversificacao."
     },
     "despesa": {
       "title": "Despesa",
-      "analysis": "As despesas somaram R$ 213.916,09: OBRACLINICA1135 (R$ 74.094, -20,6%), Retirada de Lucro (R$ 50.000), Insumos (R$ 22.083), Aluguel (R$ 16.333), IRPJ (R$ 9.573).\n\nCondomínio subiu para R$ 6.775 (+35,9%). Remuneração de Autônomos (R$ 4.448) sugere contratação pontual."
+      "analysis": "Despesas totais de R$213.746,10. Principais: OBRACLINICA1135 (R$359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$200.000,00), 2.1.01.002.0003- Insumos (R$86.441,07). Relacao despesa/receita: 107,2%.\n\nDespesas superaram receitas. Analisar categorias com maior crescimento."
     },
     "fluxo_caixa": {
       "title": "Fluxo de Caixa",
-      "analysis": "O fluxo foi positivo em R$ 138.933,50, quatro meses consecutivos de geração. Acumulado do quadrimestre: R$ 710.350.\n\nA redução da obra contribuiu para preservar caixa apesar da menor receita."
+      "analysis": "Entradas de R$199.307,66 e saidas de R$213.746,10, fluxo liquido de -R$14.438,44.\n\nFluxo negativo, pressao sobre capital de giro."
     },
     "tesouraria": {
       "title": "Tesouraria",
-      "analysis": "A tesouraria manteve equilíbrio com geração cobrindo investimentos e distribuição. Obra acumula R$ 258.684 em quatro meses.\n\nRecomenda-se avaliar estágio da obra e projetar desembolsos restantes."
+      "analysis": "Recebido R$199.307,66, pago R$213.746,10, saldo -R$14.438,44.\n\nSaldo negativo requer atencao."
     },
     "comparativo": {
       "title": "Comparativo",
-      "analysis": "Menor receita entre meses completos (R$ 352.850), mas margem de 39,37% saudável. Harmonyca e Sculptra cresceram contrariando tendência geral.\n\nDiversificação do portfólio é proteção natural contra oscilações de demanda individual."
+      "analysis": "Analise comparativa do periodo Abril/2026 em andamento.\n\nAcompanhar evolucao mensal para identificar tendencias."
     }
   },
-  "conclusao": "Abril manteve consistência com R$ 138.934 de superávit. O crescimento de Harmonyca e Sculptra demonstra dinamismo.\n\nRecomenda-se: (1) investigar queda de receita; (2) aproveitar momentum de Harmonyca e Sculptra; e (3) planejar operação pós-obra."
+  "conclusao": "Em Abril/2026: receita R$199.307,66, despesa R$213.746,10, liquido -R$14.438,44.\n\nManter controle de fluxo de caixa."
 }

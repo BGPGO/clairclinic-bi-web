@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-05-27T03:00:00.000Z",
+  "generated_at": "2026-05-27T16:22:53.270Z",
   "empresa": "Clair Clinic",
-  "periodo": "Março/2026",
+  "periodo": "Marco/2026",
   "year": 2026,
   "month": 3,
   "filter": "realizado",
   "secoes": {
     "visao_geral": {
-      "title": "Visão Geral",
-      "analysis": "Em março, a Clair Clinic alcançou receita de R$ 390.346,46 e despesas de R$ 225.708,52, superávit de R$ 164.637,94 e margem de 42,18%. A receita cresceu 5,5% vs. fevereiro, enquanto despesas subiram 18,1% pela obra.\n\nO investimento em obra atingiu pico de R$ 93.388, quase dobrando fevereiro. Apesar disso, o resultado manteve-se positivo."
+      "title": "Visao Geral",
+      "analysis": "No periodo de Marco/2026, a Clair Clinic registrou receita de R$218.878,91 e despesas de R$225.418,43, com resultado liquido de -R$6.539,52 e margem de -3,0%. Principais receitas: 1.1.01.010.0016 PREENCHIMENTO POR ML (R$154.781,22), 1.1.01.010.0044 HARMONYCA (R$77.056,50), 1.1.01.010.0021 ULTRAFORMER MPT - FULLFACE (R$76.289,79).\n\nResultado negativo, atencao a estrutura de custos. Principais despesas: OBRACLINICA1135 (R$359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$200.000,00), 2.1.01.002.0003- Insumos (R$86.441,07)."
     },
     "receita": {
       "title": "Receita",
-      "analysis": "A receita totalizou R$ 390.346,46, com Transferências (R$ 171.468) e destaque para Preenchimento por ML em seu melhor mês (R$ 37.642). Harmonyca (R$ 17.432), Ultraformer (R$ 16.684) e Radiesse (R$ 11.341).\n\nA receita de procedimentos (excluindo transferências) atingiu R$ 218.878, a maior do ano, indicando crescimento orgânico."
+      "analysis": "Receita total de R$218.878,91 no periodo. 1.1.01.010.0016 PREENCHIMENTO POR ML (R$154.781,22), 1.1.01.010.0044 HARMONYCA (R$77.056,50), 1.1.01.010.0021 ULTRAFORMER MPT - FULLFACE (R$76.289,79).\n\nMonitorar concentracao de receita e buscar diversificacao."
     },
     "despesa": {
       "title": "Despesa",
-      "analysis": "As despesas somaram R$ 225.708,52, com OBRACLINICA1135 em R$ 93.388 (41,4% do total). Retirada de Lucro R$ 50.000, Insumos R$ 22.775, Aluguel R$ 16.673.\n\nO peso da obra (24% da receita) merece atenção. Os custos operacionais regulares permaneceram estáveis."
+      "analysis": "Despesas totais de R$225.418,43. Principais: OBRACLINICA1135 (R$359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$200.000,00), 2.1.01.002.0003- Insumos (R$86.441,07). Relacao despesa/receita: 103,0%.\n\nDespesas superaram receitas. Analisar categorias com maior crescimento."
     },
     "fluxo_caixa": {
       "title": "Fluxo de Caixa",
-      "analysis": "O fluxo foi positivo em R$ 164.637,94, demonstrando resiliência com pico de investimento na obra. Acumulado do trimestre: R$ 571.417.\n\nA capacidade de absorver R$ 93.388 em investimentos sem comprometer o resultado confirma autofinanciamento da clínica."
+      "analysis": "Entradas de R$218.878,91 e saidas de R$225.418,43, fluxo liquido de -R$6.539,52.\n\nFluxo negativo, pressao sobre capital de giro."
     },
     "tesouraria": {
       "title": "Tesouraria",
-      "analysis": "A tesouraria absorveu o maior desembolso da obra (R$ 93.388) mantendo saldo positivo. A geração operacional dispensa financiamento externo.\n\nRecomenda-se previsão atualizada do custo remanescente para ajustar planejamento."
+      "analysis": "Recebido R$218.878,91, pago R$225.418,43, saldo -R$6.539,52.\n\nSaldo negativo requer atencao."
     },
     "comparativo": {
       "title": "Comparativo",
-      "analysis": "Maior despesa do ano (R$ 225.709) pelo pico da obra. Receita cresceu 5,5% vs. fevereiro. Preenchimento por ML no melhor mês.\n\nA menor margem do trimestre (42,18%) é explicada pela obra. Operação core mantém-se eficiente."
+      "analysis": "Analise comparativa do periodo Marco/2026 em andamento.\n\nAcompanhar evolucao mensal para identificar tendencias."
     }
   },
-  "conclusao": "Março comprovou a resiliência do modelo com superávit de R$ 164.638 mesmo com investimento pesado na obra.\n\nRecomenda-se: (1) cronograma atualizado da obra; (2) avaliar retorno da ampliação; e (3) manter captação para procedimentos de alta margem."
+  "conclusao": "Em Marco/2026: receita R$218.878,91, despesa R$225.418,43, liquido -R$6.539,52.\n\nManter controle de fluxo de caixa."
 }
