@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T14:52:01.186Z",
+  "generated_at": "2026-05-27T03:00:00.000Z",
   "empresa": "Clair Clinic",
   "periodo": "Maio/2026",
   "year": 2026,
@@ -7,29 +7,29 @@
   "filter": "realizado",
   "secoes": {
     "visao_geral": {
-      "title": "Visao Geral",
-      "analysis": "No periodo de Maio/2026, a Clair Clinic registrou receita total de R$ 197.616,13 contra despesas de R$ 155.285,98, resultando em valor liquido de R$ 42.330,15 e margem liquida de 21,4%.  As principais fontes de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nA empresa manteve resultado positivo no periodo, demonstrando capacidade de geracao de caixa operacional. As maiores categorias de despesa foram OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07). A margem liquida esta em patamar saudavel para o segmento."
+      "title": "Visão Geral",
+      "analysis": "Em maio (dados parciais), receita de R$ 197.616,13 e despesas de R$ 155.285,98, superávit de R$ 42.330,15 e margem de 21,42%. Valores menores refletem dados parciais.\n\nO resultado permanece positivo (cinco meses consecutivos). A margem é pressionada pelo pico da obra (R$ 101.000)."
     },
     "receita": {
       "title": "Receita",
-      "analysis": "A receita total realizada no periodo foi de R$ 197.616,13, distribuida ao longo de 1 meses com dados. As principais categorias de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nE recomendavel monitorar a concentracao de receita nas principais categorias para mitigar riscos de dependencia e buscar diversificacao das fontes de faturamento."
+      "analysis": "Receita parcial de R$ 197.616,13: Transferências (R$ 103.712), Ultraformer MPT (R$ 10.679), Harmonyca (R$ 8.730), Preenchimento por ML (R$ 8.276), Toxina Face (R$ 8.255).\n\nDistribuição equilibrada entre procedimentos. Ultraformer assumiu liderança pela primeira vez."
     },
     "despesa": {
       "title": "Despesa",
-      "analysis": "As despesas totais no periodo somaram R$ 155.285,98, com as principais categorias sendo OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07).  A relacao despesa/receita ficou em 78,6%.\n\nAs despesas estao dentro de um patamar controlado em relacao a receita. Recomenda-se analise detalhada das categorias com maior crescimento para identificar oportunidades de otimizacao."
+      "analysis": "Despesas parciais de R$ 155.285,98: OBRACLINICA1135 (R$ 101.000, 65% do total), Aluguel (R$ 16.677), Retirada de Lucro reduzida (R$ 10.000).\n\nA redução da distribuição de R$ 50.000 para R$ 10.000 indica preservação de caixa frente ao investimento recorde."
     },
     "fluxo_caixa": {
       "title": "Fluxo de Caixa",
-      "analysis": "O fluxo de caixa do periodo apresentou entradas de R$ 197.616,13 e saidas de R$ 155.285,98, resultando em fluxo liquido de R$ 42.330,15. \n\nO fluxo de caixa acumulado permaneceu positivo, indicando boa gestao de liquidez. A analise dos saldos acumulados mes a mes permite identificar periodos de maior pressao sobre o caixa e planejar antecipadamente eventuais necessidades de financiamento."
+      "analysis": "Fluxo parcial positivo de R$ 42.330,15. A obra recorde (R$ 101.000) absorveu grande parte da geração. Acumulado: R$ 752.681.\n\nA redução na distribuição demonstra gestão prudente."
     },
     "tesouraria": {
       "title": "Tesouraria",
-      "analysis": "A posicao de tesouraria mostra um total recebido de R$ 197.616,13 e total pago de R$ 155.285,98 no periodo, com saldo liquido de R$ 42.330,15.\n\nA gestao de tesouraria deve manter atencao aos prazos de recebimento e pagamento para evitar descasamentos. O saldo positivo proporciona margem de seguranca para operacoes do proximo periodo."
+      "analysis": "Maior pressão do ano com desembolso de R$ 101.000 na obra. A Retirada de Lucro reduzida para R$ 10.000 foi decisão acertada.\n\nInvestimento acumulado na obra atinge R$ 359.685. A gestão deve garantir conversão em receita futura."
     },
     "comparativo": {
       "title": "Comparativo",
-      "analysis": "Com 1 meses de dados disponiveis, a base comparativa ainda esta em formacao.\n\nRecomenda-se acompanhar a evolucao mes a mes para identificar tendencias de crescimento ou retracao, permitindo ajustes estrategicos tempestivos."
+      "analysis": "Menores valores absolutos do ano, mas resultado positivo mantido. Pico da obra (R$ 101.000) é recorde. Menor distribuição do ano.\n\nA operação core continua gerando valor mesmo com dados parciais."
     }
   },
-  "conclusao": "Em Maio/2026, a Clair Clinic registrou receita de R$ 197.616,13 e despesas de R$ 155.285,98, com resultado liquido de R$ 42.330,15. O mes apresentou resultado positivo.\n\nRecomenda-se acompanhar as categorias com maior variacao e manter controle rigoroso do fluxo de caixa."
+  "conclusao": "Maio confirma tendência positiva com cinco meses no azul. O superávit de R$ 42.330 reflete o investimento recorde na obra.\n\nRecomenda-se: (1) concluir a obra; (2) retomar distribuição normal após estabilização; e (3) definir metas pós-ampliação para rentabilizar os R$ 360 mil investidos."
 }

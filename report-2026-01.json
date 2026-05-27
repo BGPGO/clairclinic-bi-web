@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T14:52:01.179Z",
+  "generated_at": "2026-05-27T03:00:00.000Z",
   "empresa": "Clair Clinic",
   "periodo": "Janeiro/2026",
   "year": 2026,
@@ -7,29 +7,29 @@
   "filter": "realizado",
   "secoes": {
     "visao_geral": {
-      "title": "Visao Geral",
-      "analysis": "No periodo de Janeiro/2026, a Clair Clinic registrou receita total de R$ 410.494,46 contra despesas de R$ 182.464,30, resultando em valor liquido de R$ 228.030,16 e margem liquida de 55,6%.  As principais fontes de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nA empresa manteve resultado positivo no periodo, demonstrando capacidade de geracao de caixa operacional. As maiores categorias de despesa foram OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07). A margem liquida esta em patamar saudavel para o segmento."
+      "title": "Visão Geral",
+      "analysis": "Em janeiro de 2026, a Clair Clinic registrou seu melhor mês com receita de R$ 410.494,46 e despesas de R$ 182.464,30, resultando em superávit de R$ 228.030,16 e margem de 55,55%. A demanda aquecida no início do ano e custos controlados posicionaram janeiro como referência.\n\nOs gastos com a obra (R$ 34.333) ainda estavam em fase inicial, permitindo margem mais ampla. A combinação de alta receita com despesas controladas foi ideal."
     },
     "receita": {
       "title": "Receita",
-      "analysis": "A receita total realizada no periodo foi de R$ 410.494,46, distribuida ao longo de 1 meses com dados. As principais categorias de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nE recomendavel monitorar a concentracao de receita nas principais categorias para mitigar riscos de dependencia e buscar diversificacao das fontes de faturamento."
+      "analysis": "A receita totalizou R$ 410.494,46, com Transferências de Entrada (R$ 179.052) e procedimentos liderados por Preenchimento por ML (R$ 50.029), Harmonyca (R$ 15.303), Ultraformer MPT (R$ 14.114) e Toxina Face (R$ 11.827).\n\nA variedade de procedimentos — Blefaroplastia (R$ 10.933), Radiesse (R$ 11.300), Sculptra (R$ 10.194) — demonstra versatilidade. O Preenchimento por ML representou 21,6% da receita de procedimentos."
     },
     "despesa": {
       "title": "Despesa",
-      "analysis": "As despesas totais no periodo somaram R$ 182.464,30, com as principais categorias sendo OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07).  A relacao despesa/receita ficou em 44,4%.\n\nAs despesas estao dentro de um patamar controlado em relacao a receita. Recomenda-se analise detalhada das categorias com maior crescimento para identificar oportunidades de otimizacao."
+      "analysis": "As despesas somaram R$ 182.464,30: Retirada de Lucro (R$ 40.000), OBRACLINICA1135 (R$ 34.333), Insumos (R$ 22.533), IRPJ (R$ 20.068), COFINS (R$ 16.026), Aluguel (R$ 15.758). Carga tributária de R$ 36.094 (8,8% da receita).\n\nCustos fixos (Aluguel + Condomínio = R$ 20.744) representam 5,1% da receita. Insumos em 5,5%. Excelente eficiência operacional."
     },
     "fluxo_caixa": {
       "title": "Fluxo de Caixa",
-      "analysis": "O fluxo de caixa do periodo apresentou entradas de R$ 410.494,46 e saidas de R$ 182.464,30, resultando em fluxo liquido de R$ 228.030,16. \n\nO fluxo de caixa acumulado permaneceu positivo, indicando boa gestao de liquidez. A analise dos saldos acumulados mes a mes permite identificar periodos de maior pressao sobre o caixa e planejar antecipadamente eventuais necessidades de financiamento."
+      "analysis": "O fluxo de caixa foi positivo em R$ 228.030,16, o melhor do ano. A geração robusta permitiu iniciar investimentos na obra sem comprometer liquidez.\n\nCom despesas em apenas 44,5% da receita, janeiro demonstrou a alta alavancagem operacional do modelo de negócio."
     },
     "tesouraria": {
       "title": "Tesouraria",
-      "analysis": "A posicao de tesouraria mostra um total recebido de R$ 410.494,46 e total pago de R$ 182.464,30 no periodo, com saldo liquido de R$ 228.030,16.\n\nA gestao de tesouraria deve manter atencao aos prazos de recebimento e pagamento para evitar descasamentos. O saldo positivo proporciona margem de seguranca para operacoes do proximo periodo."
+      "analysis": "A tesouraria beneficiou-se do forte resultado. O início da obra (R$ 34.333) e distribuição (R$ 40.000) foram confortavelmente cobertos pela geração de caixa.\n\nAlocação equilibrada entre investimento, remuneração e retenção demonstra maturidade na gestão financeira."
     },
     "comparativo": {
       "title": "Comparativo",
-      "analysis": "Com 1 meses de dados disponiveis, a base comparativa ainda esta em formacao.\n\nRecomenda-se acompanhar a evolucao mes a mes para identificar tendencias de crescimento ou retracao, permitindo ajustes estrategicos tempestivos."
+      "analysis": "Janeiro estabeleceu o benchmark do ano: maior receita (R$ 410.494) e melhor margem (55,55%). O estágio inicial da obra (R$ 34.333) contribuiu para margem superior.\n\nNos meses seguintes, o avanço da obra comprimirá temporariamente a margem."
     }
   },
-  "conclusao": "Em Janeiro/2026, a Clair Clinic registrou receita de R$ 410.494,46 e despesas de R$ 182.464,30, com resultado liquido de R$ 228.030,16. O mes apresentou resultado positivo.\n\nRecomenda-se acompanhar as categorias com maior variacao e manter controle rigoroso do fluxo de caixa."
+  "conclusao": "Janeiro foi o melhor mês, com superávit de R$ 228.030 e margem de 55,55%. A demanda aquecida e custos controlados criaram condições ideais.\n\nRecomenda-se: (1) usar janeiro como referência para metas; (2) fidelizar pacientes; e (3) preparar-se para aumento de custos com a obra."
 }

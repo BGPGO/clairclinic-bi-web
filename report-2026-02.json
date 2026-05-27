@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T14:52:01.181Z",
+  "generated_at": "2026-05-27T03:00:00.000Z",
   "empresa": "Clair Clinic",
   "periodo": "Fevereiro/2026",
   "year": 2026,
@@ -7,29 +7,29 @@
   "filter": "realizado",
   "secoes": {
     "visao_geral": {
-      "title": "Visao Geral",
-      "analysis": "No periodo de Fevereiro/2026, a Clair Clinic registrou receita total de R$ 369.852,13 contra despesas de R$ 191.103,32, resultando em valor liquido de R$ 178.748,81 e margem liquida de 48,3%.  As principais fontes de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nA empresa manteve resultado positivo no periodo, demonstrando capacidade de geracao de caixa operacional. As maiores categorias de despesa foram OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07). A margem liquida esta em patamar saudavel para o segmento."
+      "title": "Visão Geral",
+      "analysis": "Em fevereiro, a Clair Clinic registrou receita de R$ 369.852,13 e despesas de R$ 191.103,32, superávit de R$ 178.748,81 e margem de 48,33%. A queda de 9,9% na receita é natural para o período.\n\nA margem manteve-se saudável acima de 48%. O aumento da obra (R$ 56.869, +65,6%) foi compensado pela menor carga tributária."
     },
     "receita": {
       "title": "Receita",
-      "analysis": "A receita total realizada no periodo foi de R$ 369.852,13, distribuida ao longo de 1 meses com dados. As principais categorias de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nE recomendavel monitorar a concentracao de receita nas principais categorias para mitigar riscos de dependencia e buscar diversificacao das fontes de faturamento."
+      "analysis": "A receita totalizou R$ 369.852,13, com Transferências (R$ 168.704), Preenchimento por ML (R$ 25.968), Elleva X Corporal (R$ 20.124), Ultraformer MPT (R$ 19.275), Harmonyca (R$ 13.885) e Radiesse (R$ 13.626).\n\nDestaca-se o crescimento de Elleva X Corporal para o segundo procedimento mais realizado. Esta evolução pode indicar sazonalidade ou sucesso promocional."
     },
     "despesa": {
       "title": "Despesa",
-      "analysis": "As despesas totais no periodo somaram R$ 191.103,32, com as principais categorias sendo OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07).  A relacao despesa/receita ficou em 51,7%.\n\nAs despesas estao dentro de um patamar controlado em relacao a receita. Recomenda-se analise detalhada das categorias com maior crescimento para identificar oportunidades de otimizacao."
+      "analysis": "As despesas somaram R$ 191.103,32: OBRACLINICA1135 (R$ 56.869, +65,6%), Retirada de Lucro (R$ 50.000), Aluguel (R$ 19.553) e Insumos (R$ 19.050).\n\nCustos operacionais excluindo obra e distribuição ficaram em R$ 84.234 (22,8% da receita), patamar eficiente."
     },
     "fluxo_caixa": {
       "title": "Fluxo de Caixa",
-      "analysis": "O fluxo de caixa do periodo apresentou entradas de R$ 369.852,13 e saidas de R$ 191.103,32, resultando em fluxo liquido de R$ 178.748,81. \n\nO fluxo de caixa acumulado permaneceu positivo, indicando boa gestao de liquidez. A analise dos saldos acumulados mes a mes permite identificar periodos de maior pressao sobre o caixa e planejar antecipadamente eventuais necessidades de financiamento."
+      "analysis": "O fluxo de caixa foi positivo em R$ 178.748,81, redução de 21,6% vs. janeiro refletindo menor receita e mais investimento na obra.\n\nO acumulado de R$ 406.779 proporciona conforto para sustentar investimentos sem financiamento externo."
     },
     "tesouraria": {
       "title": "Tesouraria",
-      "analysis": "A posicao de tesouraria mostra um total recebido de R$ 369.852,13 e total pago de R$ 191.103,32 no periodo, com saldo liquido de R$ 178.748,81.\n\nA gestao de tesouraria deve manter atencao aos prazos de recebimento e pagamento para evitar descasamentos. O saldo positivo proporciona margem de seguranca para operacoes do proximo periodo."
+      "analysis": "A tesouraria manteve-se sólida, absorvendo aumento da obra e elevação da distribuição. O investimento em Software (R$ 3.251) indica modernização.\n\nA folga acumulada permite manter cronograma de investimentos sem comprometer operação corrente."
     },
     "comparativo": {
       "title": "Comparativo",
-      "analysis": "Com 1 meses de dados disponiveis, a base comparativa ainda esta em formacao.\n\nRecomenda-se acompanhar a evolucao mes a mes para identificar tendencias de crescimento ou retracao, permitindo ajustes estrategicos tempestivos."
+      "analysis": "Queda de 9,9% na receita vs. janeiro, mas margem de 48,33% permaneceu robusta. A obra subiu 65,6% e a Retirada de Lucro para R$ 50.000.\n\nElleva X Corporal ganhou protagonismo, positivo para diversificação."
     }
   },
-  "conclusao": "Em Fevereiro/2026, a Clair Clinic registrou receita de R$ 369.852,13 e despesas de R$ 191.103,32, com resultado liquido de R$ 178.748,81. O mes apresentou resultado positivo.\n\nRecomenda-se acompanhar as categorias com maior variacao e manter controle rigoroso do fluxo de caixa."
+  "conclusao": "Fevereiro manteve padrão positivo com R$ 178.749 de superávit e margem de 48,33%. A clínica gera valor mesmo em meses de menor movimento.\n\nRecomenda-se: (1) avaliar tendência da Elleva X Corporal; (2) monitorar custos da obra; e (3) manter distribuição alinhada à geração."
 }

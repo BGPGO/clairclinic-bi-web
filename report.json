@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-05-27T14:52:01.177Z",
+  "generated_at": "2026-05-27T03:00:00.000Z",
   "empresa": "Clair Clinic",
-  "periodo": "Ano 2026 (YTD)",
+  "periodo": "YTD 2026 (Janeiro a Maio)",
   "year": 2026,
   "month": null,
   "filter": "realizado",
   "secoes": {
     "visao_geral": {
-      "title": "Visao Geral",
-      "analysis": "No periodo de Ano 2026 (YTD), a Clair Clinic registrou receita total de R$ 1.721.158,77 contra despesas de R$ 968.478,21, resultando em valor liquido de R$ 752.680,56 e margem liquida de 43,7%. O melhor resultado mensal foi em janeiro com saldo de R$ 228.030,16, enquanto maio apresentou o resultado mais desafiador com R$ 42.330,15. As principais fontes de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50).\n\nA empresa manteve resultado positivo no periodo, demonstrando capacidade de geracao de caixa operacional. As maiores categorias de despesa foram OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07). A margem liquida esta em patamar saudavel para o segmento."
+      "title": "Visão Geral",
+      "analysis": "No acumulado de janeiro a maio de 2026, a Clair Clinic registrou receita total de R$ 1.721.158,77 contra despesas de R$ 968.478,21, alcançando resultado líquido positivo de R$ 752.680,56 e margem líquida de 43,73%. Todos os cinco meses apresentaram resultado positivo, demonstrando consistência na geração de valor e solidez do modelo de negócio da clínica de estética.\n\nO melhor desempenho absoluto foi em janeiro (R$ 228.030,16), enquanto maio registrou o menor resultado (R$ 42.330,15), parcialmente explicável por ser mês ainda em andamento. A receita mensal manteve-se na faixa de R$ 350 mil a R$ 410 mil nos quatro primeiros meses, com média de R$ 380.886, indicando estabilidade operacional."
     },
     "receita": {
       "title": "Receita",
-      "analysis": "A receita total realizada no periodo foi de R$ 1.721.158,77, distribuida ao longo de 5 meses com dados. As principais categorias de receita foram Transferência de Entrada (R$ 776.477,06), 1.1.01.010.0016 PREENCHIMENTO POR ML (R$ 154.781,22), 1.1.01.010.0044 HARMONYCA (R$ 77.056,50). O mes com maior receita foi janeiro com R$ 410.494,46.\n\nE recomendavel monitorar a concentracao de receita nas principais categorias para mitigar riscos de dependencia e buscar diversificacao das fontes de faturamento."
+      "analysis": "A receita acumulada de R$ 1.721.158,77 é composta por Transferências de Entrada (R$ 776.477, ou 45,1%) e procedimentos estéticos diversos. Entre os procedimentos, destacam-se Preenchimento por ML (R$ 154.781), Harmonyca (R$ 77.057), Ultraformer MPT Fullface (R$ 76.290), Elleva X Corporal (R$ 51.378), Radiesse (R$ 50.955) e Toxina Face Feminina (R$ 47.770).\n\nO Preenchimento por ML é o carro-chefe da clínica, representando 16,4% do faturamento excluindo transferências. Harmonyca e Ultraformer MPT completam o top 3. A introdução de Sculptra (R$ 44.686) e Clube do Botox Gold (R$ 40.269) demonstra capacidade de inovação e ampliação do menu de serviços."
     },
     "despesa": {
       "title": "Despesa",
-      "analysis": "As despesas totais no periodo somaram R$ 968.478,21, com as principais categorias sendo OBRACLINICA1135 (R$ 359.684,81), 2.1.02.001.0002- Retirada de Lucro (R$ 200.000,00), 2.1.01.002.0003- Insumos (R$ 86.441,07). O mes com maior volume de despesas foi março com R$ 225.708,52. A relacao despesa/receita ficou em 56,3%.\n\nAs despesas estao dentro de um patamar controlado em relacao a receita. Recomenda-se analise detalhada das categorias com maior crescimento para identificar oportunidades de otimizacao."
+      "analysis": "As despesas acumuladas totalizam R$ 968.478,21, com a principal rubrica sendo OBRACLINICA1135 (R$ 359.685, ou 37,1%), seguida por Retirada de Lucro (R$ 200.000), Insumos (R$ 86.441), Aluguel (R$ 84.993) e impostos — IRPJ (R$ 29.641) e COFINS (R$ 29.528). Condomínio soma R$ 26.967.\n\nA Retirada de Lucro de R$ 200.000 (média R$ 40.000/mês) é distribuição saudável. Insumos representam apenas 5,0% da receita. Aluguel e Condomínio somam R$ 111.960 (6,5% do faturamento). A rubrica OBRACLINICA1135 merece atenção por seu peso nos custos totais."
     },
     "fluxo_caixa": {
       "title": "Fluxo de Caixa",
-      "analysis": "O fluxo de caixa do periodo apresentou entradas de R$ 1.721.158,77 e saidas de R$ 968.478,21, resultando em fluxo liquido de R$ 752.680,56. A evolucao mensal mostra 5 meses com saldo positivo e 0 meses com saldo negativo.\n\nO fluxo de caixa acumulado permaneceu positivo, indicando boa gestao de liquidez. A analise dos saldos acumulados mes a mes permite identificar periodos de maior pressao sobre o caixa e planejar antecipadamente eventuais necessidades de financiamento."
+      "analysis": "O fluxo de caixa manteve-se consistentemente positivo: janeiro R$ 228.030, fevereiro R$ 178.749, março R$ 164.638, abril R$ 138.934 e maio R$ 42.330. O superávit acumulado de R$ 752.680,56 é explicado pela redução gradual causada pelo aumento nos gastos com a obra.\n\nA geração média mensal de R$ 150.536 posiciona a clínica em situação confortável, permitindo investimentos em infraestrutura sem comprometer liquidez. A distribuição regular de lucros (R$ 200.000 no período) confirma a capacidade de remunerar sócios e reter caixa."
     },
     "tesouraria": {
       "title": "Tesouraria",
-      "analysis": "A posicao de tesouraria mostra um total recebido de R$ 1.721.158,77 e total pago de R$ 968.478,21 no periodo, com saldo liquido de R$ 752.680,56.\n\nA gestao de tesouraria deve manter atencao aos prazos de recebimento e pagamento para evitar descasamentos. O saldo positivo proporciona margem de seguranca para operacoes do proximo periodo."
+      "analysis": "A posição de tesouraria reflete solidez financeira, com geração de caixa suficiente para cobrir despesas operacionais, investimentos e distribuição. Os investimentos em Software (R$ 14.605) e Imobilizações (R$ 17.918) demonstram modernização.\n\nO principal compromisso é o projeto OBRACLINICA1135, que acumula R$ 359.685. Este investimento está sendo financiado integralmente pela geração operacional. Recomenda-se monitorar cronograma e orçamento da obra."
     },
     "comparativo": {
       "title": "Comparativo",
-      "analysis": "Comparando os trimestres de Ano 2026 (YTD), observam-se variacoes relevantes tanto na receita quanto na despesa. A analise trimestral permite identificar tendencias sazonais.\n\nRecomenda-se acompanhar a evolucao mes a mes para identificar tendencias de crescimento ou retracao, permitindo ajustes estrategicos tempestivos."
+      "analysis": "A análise comparativa revela estabilidade na receita (R$ 353 mil a R$ 410 mil entre janeiro e abril). A margem apresentou redução gradual — de 55,55% em janeiro para 39,37% em abril — explicada pelo aumento nos gastos com a obra: R$ 34.333 em janeiro, R$ 56.869 em fevereiro, R$ 93.388 em março, R$ 74.094 em abril e R$ 101.000 em maio.\n\nA Retirada de Lucro manteve-se em R$ 40-50 mil/mês nos quatro primeiros meses, com redução para R$ 10.000 em maio, refletindo cautela. A estrutura de custos operacionais permaneceu controlada."
     }
   },
-  "conclusao": "A Clair Clinic encerrou o periodo com resultado liquido positivo de R$ 752.680,56, demonstrando capacidade operacional. Margem liquida de 43,7%.\n\nRecomendacoes: (1) Monitorar as principais categorias de despesa para identificar oportunidades de reducao. (2) Diversificar fontes de receita. (3) Implementar projecoes de fluxo de caixa para antecipar periodos de pressao financeira."
+  "conclusao": "A Clair Clinic apresenta desempenho sólido no período, com receita de R$ 1,72 milhão, margem de 43,73% e resultado positivo em todos os meses. A diversificação do portfólio de procedimentos e a consistência na geração de caixa demonstram maturidade operacional.\n\nRecomenda-se: (1) monitorar orçamento do projeto OBRACLINICA1135 (R$ 360 mil acumulados); (2) ampliar procedimentos de maior margem; (3) manter disciplina na distribuição de lucros; e (4) planejar retorno do investimento na obra com metas de faturamento."
 }
