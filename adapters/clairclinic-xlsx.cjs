@@ -99,6 +99,9 @@ module.exports = {
       const dataVenc = isoDate(r['Data original de vencimento']) || dataMov;
 
       const categoria = String(r['Categoria 1'] || '').trim();
+      // Excluir transferências entre contas (não são receita/despesa real)
+      if (/transfer[eê]ncia/i.test(categoria)) continue;
+
       const cliente = String(r['Nome do fornecedor/cliente'] || '').trim();
       const contaBancaria = String(r['Conta bancária'] || r['Conta bancaria'] || '').trim();
       const centroCusto = String(r['Centro de Custo 1...27'] || '').trim();
