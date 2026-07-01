@@ -15,6 +15,35 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
     return B.MONTH_DATA.map((m, i) => i).filter(i => B.MONTH_DATA[i].receita > 0 || B.MONTH_DATA[i].despesa > 0);
   }, [B]);
 
+  // ── Saldo inicial real: soma tudo de ALL_TX até dez do ano anterior ──
+  const saldoInicialAno = useMemo(() => {
+    const tx = window.ALL_TX || [];
+    const rg = (filters && filters.regime === "competencia") ? "k" : "c";
+    const y = year || window.REF_YEAR;
+    let saldo = 0;
+    for (const row of tx) {
+      if (row[9] !== rg) continue;
+      if (statusFilter === "realizado" && row[6] !== 1) continue;
+      if (statusFilter === "a_pagar_receber" && row[6] !== 0) continue;
+      if (!row[1]) continue;
+      const anoTx = parseInt(row[1].slice(0, 4), 10);
+      if (anoTx >= y) continue; // só até ano anterior
+      if (row[0] === "r") saldo += row[5];
+      else saldo -= row[5];
+    }
+    return saldo;
+  }, [statusFilter, year, filters]);
+
+  // ── Saldo acumulado mês a mês (saldo inicial + receita - despesa) ──
+  const saldosPorMes = useMemo(() => {
+    let saldo = saldoInicialAno;
+    return B.MONTH_DATA.map((m, i) => {
+      const saldoInicio = saldo;
+      saldo += m.receita - m.despesa;
+      return { saldoInicio, saldoFim: saldo };
+    });
+  }, [B, saldoInicialAno]);
+
   // ═══════════════════════════════════════════════
   // 1) CUSTO POR PROCEDIMENTO/SERVIÇO
   // ═══════════════════════════════════════════════
@@ -88,30 +117,51 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
   // 3) CAPITAL DE GIRO
   // ═══════════════════════════════════════════════
   const capitalGiro = useMemo(() => {
-    // Simula saldo inicial como o primeiro SALDOS_MES + resultado do primeiro mês
-    // Usa o saldo do primeiro mês como proxy
-    const saldoInicial = mesesComDados.length > 0
-      ? Math.max(B.SALDOS_MES[mesesComDados[0]] - (B.MONTH_DATA[mesesComDados[0]].receita - B.MONTH_DATA[mesesComDados[0]].despesa), 0) + 60000
-      : 60000;
+    const tx = window.ALL_TX || [];
+    const rg = (filters && filters.regime === "competencia") ? "k" : "c";
+    const y = year || window.REF_YEAR;
 
     return mesesComDados.map(i => {
-      const m = B.MONTH_DATA[i];
-      // Simula fluxo diário: pega receita e despesa do mês
-      // Maior déficit = meses onde a despesa supera receita mais cedo
-      const maiorDeficit = Math.min(0, m.receita - m.despesa);
-      const cgNecessario = saldoInicial + Math.abs(maiorDeficit);
-      const suficiente = saldoInicial >= cgNecessario ? "Sim" :
-        (saldoInicial >= cgNecessario * 0.9 ? "Limite" : "Não");
+      const saldoInicio = saldosPorMes[i].saldoInicio;
+      const mesStr = String(i + 1).padStart(2, "0");
+      const ym = `${y}-${mesStr}`;
+
+      // Calcula fluxo diário para achar o maior déficit intra-mês
+      const movDia = {};
+      for (const row of tx) {
+        if (row[9] !== rg) continue;
+        if (statusFilter === "realizado" && row[6] !== 1) continue;
+        if (statusFilter === "a_pagar_receber" && row[6] !== 0) continue;
+        if (row[1] !== ym) continue;
+        const dia = row[2];
+        if (!movDia[dia]) movDia[dia] = 0;
+        if (row[0] === "r") movDia[dia] += row[5];
+        else movDia[dia] -= row[5];
+      }
+
+      // Acha o menor saldo intra-mês
+      let saldoCorrente = saldoInicio;
+      let menorSaldo = saldoInicio;
+      const diasOrdem = Object.keys(movDia).map(Number).sort((a, b) => a - b);
+      for (const dia of diasOrdem) {
+        saldoCorrente += movDia[dia];
+        if (saldoCorrente < menorSaldo) menorSaldo = saldoCorrente;
+      }
+
+      const maiorDeficit = menorSaldo - saldoInicio;
+      const cgNecessario = Math.abs(Math.min(0, menorSaldo)) + saldoInicio;
+      const suficiente = menorSaldo > saldoInicio * 0.1 ? "Sim" :
+        (menorSaldo >= 0 ? "Limite" : "Não");
 
       return {
         mes: MESES_LABEL[i],
-        saldoInicial: saldoInicial,
+        saldoInicial: saldoInicio,
         maiorDeficit: maiorDeficit,
         cgNecessario: cgNecessario,
         suficiente,
       };
     });
-  }, [B, mesesComDados]);
+  }, [B, mesesComDados, saldosPorMes, statusFilter, year, filters]);
 
   // ═══════════════════════════════════════════════
   // 4) FLUXO DE CAIXA DIÁRIO
@@ -149,8 +199,8 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
       }
     }
 
-    // Calcular saldo acumulado (saldo do mês anterior + entradas - saídas dia a dia)
-    const saldoAnterior = fluxoMes > 0 ? (B.SALDOS_MES[fluxoMes - 1] || 0) : 0;
+    // Saldo inicial real do mês (acumulado histórico)
+    const saldoAnterior = saldosPorMes[fluxoMes].saldoInicio;
     let saldo = saldoAnterior;
     const saldos = [];
     const dias = [];
