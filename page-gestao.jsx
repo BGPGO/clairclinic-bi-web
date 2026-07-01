@@ -167,13 +167,14 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
   // 4) FLUXO DE CAIXA DIÁRIO
   // ═══════════════════════════════════════════════
   const [fluxoMes, setFluxoMes] = useState(() => {
-    // Pegar o último mês com dados
     const md = (window.BIT || B).MONTH_DATA || [];
     for (let i = md.length - 1; i >= 0; i--) {
       if (md[i].receita > 0 || md[i].despesa > 0) return i;
     }
     return 0;
   });
+  const [diaSelecionado, setDiaSelecionado] = useState(null);
+  const [tooltip, setTooltip] = useState(null);
 
   const fluxoDiario = useMemo(() => {
     const tx = window.ALL_TX || [];
@@ -219,6 +220,31 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
 
     return { entradas, saidas, saldos, dias, saldoAnterior, ultimoDia };
   }, [B, fluxoMes, statusFilter, year, filters]);
+
+  // Lançamentos do dia selecionado
+  const lancamentosDia = useMemo(() => {
+    if (diaSelecionado == null) return [];
+    const tx = window.ALL_TX || [];
+    const rg = (filters && filters.regime === "competencia") ? "k" : "c";
+    const y = year || window.REF_YEAR;
+    const mesStr = String(fluxoMes + 1).padStart(2, "0");
+    const ym = `${y}-${mesStr}`;
+    const rows = [];
+    for (const row of tx) {
+      if (row[9] !== rg) continue;
+      if (statusFilter === "realizado" && row[6] !== 1) continue;
+      if (statusFilter === "a_pagar_receber" && row[6] !== 0) continue;
+      if (row[1] !== ym || row[2] !== diaSelecionado) continue;
+      rows.push({
+        tipo: row[0] === "r" ? "Receita" : "Despesa",
+        categoria: row[3] || "—",
+        pessoa: (row[0] === "r" ? row[4] : row[7]) || "—",
+        valor: row[0] === "r" ? row[5] : -Math.abs(row[5]),
+      });
+    }
+    rows.sort((a, b) => b.valor - a.valor);
+    return rows;
+  }, [diaSelecionado, fluxoMes, statusFilter, year, filters]);
 
   // ═══════════════════════════════════════════════
   // 5) PONTO DE EQUILÍBRIO SEM DEPRECIAÇÃO
@@ -499,119 +525,207 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
 
       {/* ════════════ 4. FLUXO DE CAIXA DIÁRIO ════════════ */}
       <div className="card" style={{ padding: 24 }}>
-        <h2 className="card-title" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <h2 className="card-title" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           Fluxo de Caixa Diário
           <select
             className="header-year"
             value={fluxoMes}
-            onChange={e => setFluxoMes(Number(e.target.value))}
+            onChange={e => { setFluxoMes(Number(e.target.value)); setDiaSelecionado(null); setTooltip(null); }}
             style={{ fontSize: 13, marginLeft: 8 }}
           >
             {MESES_FULL.map((m, i) => (
               <option key={i} value={i}>{m.charAt(0).toUpperCase() + m.slice(1)}</option>
             ))}
           </select>
+          {diaSelecionado != null && (
+            <button className="btn-ghost" onClick={() => setDiaSelecionado(null)}
+              style={{ fontSize: 12, marginLeft: 4 }}>
+              &#10005; Dia {String(diaSelecionado).padStart(2, "0")} — Limpar filtro
+            </button>
+          )}
         </h2>
 
-        {/* Gráfico SVG: barras de entrada (verde) e saída (vermelho) + linha de saldo (amarelo) */}
+        {/* Gráfico SVG */}
         {(() => {
           const { entradas, saidas, saldos, dias } = fluxoDiario;
           const numDias = dias.length;
           if (numDias === 0) return <p style={{ color: "var(--mute)", padding: 24 }}>Sem dados para este mês.</p>;
 
           const maxBar = Math.max(...dias.map((_, i) => Math.max(entradas[i], saidas[i])), 1);
-          const allSaldos = saldos;
-          const minSaldo = Math.min(...allSaldos, 0);
-          const maxSaldo = Math.max(...allSaldos, 1);
+          const minSaldo = Math.min(...saldos, 0);
+          const maxSaldo = Math.max(...saldos, 1);
           const saldoRange = maxSaldo - minSaldo || 1;
 
-          const W = 1000;
-          const H = 300;
-          const padL = 60, padR = 20, padT = 20, padB = 50;
+          const W = 1200;
+          const H = 480;
+          const padL = 70, padR = 20, padT = 30, padB = 50;
           const chartW = W - padL - padR;
           const chartH = H - padT - padB;
           const barW = chartW / numDias;
-          const halfBar = barW * 0.35;
+          const halfBar = barW * 0.32;
 
-          // Linha de saldo
           const saldoPoints = dias.map((_, i) => {
             const x = padL + i * barW + barW / 2;
             const y = padT + chartH - ((saldos[i] - minSaldo) / saldoRange) * chartH;
             return `${x},${y}`;
           }).join(" ");
 
-          return (
-            <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: 300 }} preserveAspectRatio="xMidYMid meet">
-              {/* Grid lines */}
-              {[0, 0.25, 0.5, 0.75, 1].map((p, gi) => {
-                const y = padT + chartH * (1 - p);
-                return <line key={gi} x1={padL} y1={y} x2={W - padR} y2={y} stroke="oklch(1 0 0 / 0.06)" strokeDasharray="3 4" />;
-              })}
+          const handleBarClick = (dia) => {
+            setDiaSelecionado(prev => prev === dia ? null : dia);
+            setTooltip(null);
+          };
 
-              {/* Barras */}
-              {dias.map((d, i) => {
-                const x = padL + i * barW + barW / 2;
-                const eH = (entradas[i] / maxBar) * chartH;
-                const sH = (saidas[i] / maxBar) * chartH;
-                return (
-                  <g key={i}>
-                    {/* Entrada (verde) */}
-                    <rect x={x - halfBar - 1} y={padT + chartH - eH} width={halfBar} height={eH}
-                      fill="#22c55e" rx="2" opacity="0.85" />
-                    {/* Saída (vermelho) */}
-                    <rect x={x + 1} y={padT + chartH - sH} width={halfBar} height={sH}
-                      fill="#ef4444" rx="2" opacity="0.85" />
-                    {/* Label dia */}
-                    <text x={x} y={H - padB + 16} textAnchor="middle" fill="oklch(1 0 0 / 0.4)" fontSize="10"
-                      fontFamily="Inter, sans-serif">
-                      {(i + 1) % 2 === 1 || numDias <= 15 ? String(d).padStart(2, "0") : ""}
+          const handleHover = (e, i, tipo) => {
+            const svgEl = e.currentTarget.closest("svg");
+            const pt = svgEl.createSVGPoint();
+            pt.x = e.clientX; pt.y = e.clientY;
+            const svgPt = pt.matrixTransform(svgEl.getScreenCTM().inverse());
+            let label, value, color;
+            if (tipo === "entrada") { label = "Entrada"; value = entradas[i]; color = "#22c55e"; }
+            else if (tipo === "saida") { label = "Saída"; value = saidas[i]; color = "#ef4444"; }
+            else { label = "Saldo"; value = saldos[i]; color = "#eab308"; }
+            setTooltip({ x: svgPt.x, y: svgPt.y - 14, label, value, color, dia: dias[i] });
+          };
+          const handleLeave = () => setTooltip(null);
+
+          // Eixo Y barras
+          const barTicks = [0, 0.25, 0.5, 0.75, 1].map(p => p * maxBar);
+          // Eixo Y saldo
+          const saldoTicks = [0, 0.25, 0.5, 0.75, 1].map(p => minSaldo + p * saldoRange);
+
+          return (
+            <div style={{ position: "relative" }}>
+              <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: 480, display: "block" }}
+                preserveAspectRatio="xMidYMid meet">
+                {/* Grid */}
+                {[0, 0.25, 0.5, 0.75, 1].map((p, gi) => {
+                  const y = padT + chartH * (1 - p);
+                  return (
+                    <g key={gi}>
+                      <line x1={padL} y1={y} x2={W - padR} y2={y} stroke="oklch(1 0 0 / 0.05)" strokeDasharray="3 5" />
+                      <text x={padL - 8} y={y + 4} textAnchor="end" fill="oklch(1 0 0 / 0.35)" fontSize="9"
+                        fontFamily="JetBrains Mono, monospace">{fmtK(barTicks[gi])}</text>
+                    </g>
+                  );
+                })}
+
+                {/* Eixo Y saldo (direita) */}
+                {[0, 0.25, 0.5, 0.75, 1].map((p, gi) => {
+                  const y = padT + chartH * (1 - p);
+                  return (
+                    <text key={"sy"+gi} x={W - padR + 6} y={y + 4} textAnchor="start" fill="#eab308" fontSize="9"
+                      fontFamily="JetBrains Mono, monospace" opacity="0.6">{fmtK(saldoTicks[gi])}</text>
+                  );
+                })}
+
+                {/* Barras + hit areas */}
+                {dias.map((d, i) => {
+                  const x = padL + i * barW + barW / 2;
+                  const eH = (entradas[i] / maxBar) * chartH;
+                  const sH = (saidas[i] / maxBar) * chartH;
+                  const isSelected = diaSelecionado === d;
+                  const hasSel = diaSelecionado != null;
+                  const dimmed = hasSel && !isSelected;
+                  return (
+                    <g key={i} style={{ cursor: "pointer" }} onClick={() => handleBarClick(d)}>
+                      {/* Hit area invisível full-height */}
+                      <rect x={padL + i * barW} y={padT} width={barW} height={chartH}
+                        fill="transparent" />
+                      {/* Highlight coluna selecionada */}
+                      {isSelected && (
+                        <rect x={padL + i * barW} y={padT} width={barW} height={chartH}
+                          fill="oklch(1 0 0 / 0.04)" rx="4" />
+                      )}
+                      {/* Entrada */}
+                      <rect x={x - halfBar - 1} y={padT + chartH - eH} width={halfBar} height={Math.max(eH, 0.5)}
+                        fill="#22c55e" rx="2" opacity={dimmed ? 0.25 : 0.85}
+                        onMouseEnter={e => handleHover(e, i, "entrada")} onMouseLeave={handleLeave} />
+                      {/* Saída */}
+                      <rect x={x + 1} y={padT + chartH - sH} width={halfBar} height={Math.max(sH, 0.5)}
+                        fill="#ef4444" rx="2" opacity={dimmed ? 0.25 : 0.85}
+                        onMouseEnter={e => handleHover(e, i, "saida")} onMouseLeave={handleLeave} />
+                      {/* Label dia */}
+                      <text x={x} y={H - padB + 18} textAnchor="middle"
+                        fill={isSelected ? "var(--cyan)" : "oklch(1 0 0 / 0.45)"}
+                        fontSize={isSelected ? "12" : "10"} fontWeight={isSelected ? "700" : "400"}
+                        fontFamily="Inter, sans-serif">
+                        {String(d).padStart(2, "0")}
+                      </text>
+                    </g>
+                  );
+                })}
+
+                {/* Linha de saldo */}
+                <polyline points={saldoPoints} fill="none" stroke="#eab308" strokeWidth="2.5"
+                  strokeLinejoin="round" strokeLinecap="round" opacity={diaSelecionado != null ? 0.4 : 1} />
+                {dias.map((_, i) => {
+                  const x = padL + i * barW + barW / 2;
+                  const y = padT + chartH - ((saldos[i] - minSaldo) / saldoRange) * chartH;
+                  const isSelected = diaSelecionado === dias[i];
+                  return (
+                    <circle key={i} cx={x} cy={y}
+                      r={isSelected ? 5 : 3.5}
+                      fill={isSelected ? "#fff" : "#eab308"}
+                      stroke={isSelected ? "#eab308" : "none"} strokeWidth={isSelected ? 2 : 0}
+                      style={{ cursor: "pointer" }}
+                      opacity={diaSelecionado != null && !isSelected ? 0.3 : 1}
+                      onMouseEnter={e => handleHover(e, i, "saldo")} onMouseLeave={handleLeave}
+                      onClick={e => { e.stopPropagation(); handleBarClick(dias[i]); }} />
+                  );
+                })}
+
+                {/* Legenda */}
+                <rect x={W - 300} y={10} width={12} height={12} fill="#22c55e" rx="2" />
+                <text x={W - 284} y={20} fill="oklch(1 0 0 / 0.6)" fontSize="11" fontFamily="Inter">Entrada</text>
+                <rect x={W - 210} y={10} width={12} height={12} fill="#ef4444" rx="2" />
+                <text x={W - 194} y={20} fill="oklch(1 0 0 / 0.6)" fontSize="11" fontFamily="Inter">Saída</text>
+                <rect x={W - 130} y={12} width={18} height={3} fill="#eab308" rx="1" />
+                <text x={W - 108} y={20} fill="oklch(1 0 0 / 0.6)" fontSize="11" fontFamily="Inter">Saldo</text>
+
+                {/* Tooltip */}
+                {tooltip && (
+                  <g>
+                    <rect x={tooltip.x - 70} y={tooltip.y - 32} width={140} height={30} rx={6}
+                      fill="oklch(0.15 0.01 240)" stroke={tooltip.color} strokeWidth="1" opacity="0.95" />
+                    <text x={tooltip.x} y={tooltip.y - 18} textAnchor="middle"
+                      fill={tooltip.color} fontSize="11" fontWeight="600" fontFamily="JetBrains Mono, monospace">
+                      Dia {String(tooltip.dia).padStart(2, "0")} — {tooltip.label}
+                    </text>
+                    <text x={tooltip.x} y={tooltip.y - 6} textAnchor="middle"
+                      fill="#fff" fontSize="12" fontWeight="700" fontFamily="JetBrains Mono, monospace">
+                      {fmtV(tooltip.value)}
                     </text>
                   </g>
-                );
-              })}
-
-              {/* Linha de saldo */}
-              <polyline points={saldoPoints} fill="none" stroke="#eab308" strokeWidth="2.5"
-                strokeLinejoin="round" strokeLinecap="round" />
-              {dias.map((_, i) => {
-                const x = padL + i * barW + barW / 2;
-                const y = padT + chartH - ((saldos[i] - minSaldo) / saldoRange) * chartH;
-                return <circle key={i} cx={x} cy={y} r="3" fill="#eab308" />;
-              })}
-
-              {/* Legenda */}
-              <rect x={W - 260} y={8} width={12} height={12} fill="#22c55e" rx="2" />
-              <text x={W - 244} y={18} fill="oklch(1 0 0 / 0.6)" fontSize="11" fontFamily="Inter">Entrada</text>
-              <rect x={W - 180} y={8} width={12} height={12} fill="#ef4444" rx="2" />
-              <text x={W - 164} y={18} fill="oklch(1 0 0 / 0.6)" fontSize="11" fontFamily="Inter">Saída</text>
-              <rect x={W - 100} y={10} width={16} height={3} fill="#eab308" rx="1" />
-              <text x={W - 80} y={18} fill="oklch(1 0 0 / 0.6)" fontSize="11" fontFamily="Inter">Saldo</text>
-            </svg>
+                )}
+              </svg>
+            </div>
           );
         })()}
 
-        {/* Tabela de fluxo diário */}
-        <details style={{ marginTop: 16 }}>
-          <summary style={{ cursor: "pointer", color: "var(--cyan)", fontWeight: 600, fontSize: 13 }}>
-            Ver tabela detalhada
-          </summary>
-          <div style={{ overflowX: "auto", marginTop: 12 }}>
-            <table className="tbl" style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-              <thead>
-                <tr style={{ borderBottom: "1px solid oklch(1 0 0 / 0.08)" }}>
-                  <th style={{ textAlign: "left", padding: "8px 10px", color: "var(--fg-2)" }}>Dia</th>
-                  <th style={{ textAlign: "right", padding: "8px 10px", color: "var(--green)" }}>Entrada</th>
-                  <th style={{ textAlign: "right", padding: "8px 10px", color: "var(--red)" }}>Saída</th>
-                  <th style={{ textAlign: "right", padding: "8px 10px", color: "#eab308" }}>Saldo</th>
-                </tr>
-              </thead>
-              <tbody>
-                {fluxoDiario.dias.map((d, i) => (
+        {/* Tabela resumo do dia (sempre visível) */}
+        <div style={{ overflowX: "auto", marginTop: 16 }}>
+          <table className="tbl" style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+            <thead>
+              <tr style={{ borderBottom: "1px solid oklch(1 0 0 / 0.08)" }}>
+                <th style={{ textAlign: "left", padding: "8px 10px", color: "var(--fg-2)" }}>Dia</th>
+                <th style={{ textAlign: "right", padding: "8px 10px", color: "var(--green)" }}>Entrada</th>
+                <th style={{ textAlign: "right", padding: "8px 10px", color: "var(--red)" }}>Saída</th>
+                <th style={{ textAlign: "right", padding: "8px 10px", color: "#eab308" }}>Saldo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fluxoDiario.dias.map((d, i) => {
+                const isSelected = diaSelecionado === d;
+                return (
                   <tr key={i} style={{
                     borderBottom: "1px solid oklch(1 0 0 / 0.03)",
-                    background: fluxoDiario.saldos[i] < 0 ? "oklch(0.25 0.06 25 / 0.12)" : "transparent"
-                  }}>
-                    <td style={{ padding: "8px 10px" }}>{String(d).padStart(2, "0")}/{String(fluxoMes + 1).padStart(2, "0")}</td>
+                    background: isSelected ? "oklch(0.25 0.08 200 / 0.2)" :
+                      (fluxoDiario.saldos[i] < 0 ? "oklch(0.25 0.06 25 / 0.12)" : "transparent"),
+                    cursor: "pointer",
+                  }} onClick={() => setDiaSelecionado(prev => prev === d ? null : d)}>
+                    <td style={{ padding: "8px 10px", fontWeight: isSelected ? 700 : 400, color: isSelected ? "var(--cyan)" : "inherit" }}>
+                      {String(d).padStart(2, "0")}/{String(fluxoMes + 1).padStart(2, "0")}
+                    </td>
                     <td style={{ textAlign: "right", padding: "8px 10px", color: "var(--green)" }}>
                       {fluxoDiario.entradas[i] > 0 ? fmtV(fluxoDiario.entradas[i]) : "-"}
                     </td>
@@ -622,11 +736,69 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
                       {fmtV(fluxoDiario.saldos[i])}
                     </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Lançamentos do dia selecionado */}
+        {diaSelecionado != null && (
+          <div style={{ marginTop: 20 }}>
+            <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12, color: "var(--cyan)" }}>
+              Lançamentos — Dia {String(diaSelecionado).padStart(2, "0")}/{String(fluxoMes + 1).padStart(2, "0")}/{year || window.REF_YEAR}
+              <span style={{ color: "var(--fg-2)", fontWeight: 400, marginLeft: 12 }}>
+                ({lancamentosDia.length} lançamento{lancamentosDia.length !== 1 ? "s" : ""})
+              </span>
+            </h3>
+            {lancamentosDia.length === 0 ? (
+              <p style={{ color: "var(--mute)", fontSize: 13 }}>Nenhum lançamento neste dia.</p>
+            ) : (
+              <div style={{ overflowX: "auto" }}>
+                <table className="tbl" style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                  <thead>
+                    <tr style={{ borderBottom: "1px solid oklch(1 0 0 / 0.08)" }}>
+                      <th style={{ textAlign: "left", padding: "8px 10px", color: "var(--fg-2)", width: 80 }}>Tipo</th>
+                      <th style={{ textAlign: "left", padding: "8px 10px", color: "var(--fg-2)" }}>Categoria</th>
+                      <th style={{ textAlign: "left", padding: "8px 10px", color: "var(--fg-2)" }}>Cliente / Fornecedor</th>
+                      <th style={{ textAlign: "right", padding: "8px 10px", color: "var(--fg-2)" }}>Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {lancamentosDia.map((lc, i) => (
+                      <tr key={i} style={{ borderBottom: "1px solid oklch(1 0 0 / 0.03)" }}>
+                        <td style={{ padding: "8px 10px" }}>
+                          <span style={{
+                            display: "inline-block", padding: "2px 8px", borderRadius: 4, fontSize: 11, fontWeight: 600,
+                            background: lc.tipo === "Receita" ? "oklch(0.3 0.1 160 / 0.3)" : "oklch(0.3 0.1 25 / 0.3)",
+                            color: lc.tipo === "Receita" ? "var(--green)" : "var(--red)",
+                          }}>{lc.tipo}</span>
+                        </td>
+                        <td style={{ padding: "8px 10px", maxWidth: 280, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          {lc.categoria}
+                        </td>
+                        <td style={{ padding: "8px 10px", maxWidth: 220, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          {lc.pessoa}
+                        </td>
+                        <td style={{ textAlign: "right", padding: "8px 10px", fontWeight: 600, color: sColor(lc.valor) }}>
+                          {fmtV(lc.valor)}
+                        </td>
+                      </tr>
+                    ))}
+                    {/* Total do dia */}
+                    <tr style={{ borderTop: "2px solid oklch(1 0 0 / 0.1)" }}>
+                      <td colSpan={3} style={{ padding: "10px 10px", fontWeight: 700 }}>Total do dia</td>
+                      <td style={{ textAlign: "right", padding: "10px 10px", fontWeight: 700, fontSize: 14,
+                        color: sColor(lancamentosDia.reduce((s, l) => s + l.valor, 0)) }}>
+                        {fmtV(lancamentosDia.reduce((s, l) => s + l.valor, 0))}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
-        </details>
+        )}
       </div>
 
       {/* ════════════ 5. PONTO DE EQUILÍBRIO SEM DEPRECIAÇÃO ════════════ */}
