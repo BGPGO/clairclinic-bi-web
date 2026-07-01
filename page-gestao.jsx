@@ -67,19 +67,15 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
       }
     }
 
-    // Pegar despesas totais e distribuir proporcionalmente como custo estimado
     const totalReceita = B.TOTAL_RECEITA || 1;
-    const totalDespesa = B.TOTAL_DESPESA || 0;
-    const rateCusto = totalDespesa / totalReceita;
 
     return Array.from(recCat.entries())
       .map(([name, receita]) => ({
         name: name.replace(/^\d+\.\d+\.\d+\.\d+\.\d+\s*/, ""),
         receita,
         qtd: countCat.get(name) || 0,
-        custoEstimado: receita * rateCusto,
-        margem: receita - (receita * rateCusto),
-        margemPct: ((1 - rateCusto) * 100),
+        participacao: (receita / totalReceita) * 100,
+        ticketMedio: (countCat.get(name) || 1) > 0 ? receita / countCat.get(name) : receita,
       }))
       .sort((a, b) => b.receita - a.receita)
       .slice(0, 20);
@@ -384,22 +380,18 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
     <div className="page">
       <div className="page-title"><h1>Gestão Financeira</h1></div>
 
-      {/* ════════════ 1. CUSTO POR PROCEDIMENTO/SERVIÇO ════════════ */}
+      {/* ════════════ 1. RECEITA POR PROCEDIMENTO/SERVIÇO ════════════ */}
       <div className="card" style={{ padding: 24 }}>
-        <h2 className="card-title">Custo por Procedimento / Serviço</h2>
-        <p style={{ color: "var(--fg-2)", fontSize: 13, marginBottom: 16 }}>
-          Receita, custo estimado e margem por serviço — custos distribuídos proporcionalmente à receita.
-        </p>
-        <div style={{ overflowX: "auto" }}>
+        <h2 className="card-title">Receita por Procedimento / Serviço</h2>
+        <div style={{ overflowY: "auto", maxHeight: 420 }}>
           <table className="tbl" style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-            <thead>
+            <thead style={{ position: "sticky", top: 0, background: "oklch(0.16 0.01 240)", zIndex: 1 }}>
               <tr style={{ borderBottom: "1px solid oklch(1 0 0 / 0.08)" }}>
                 <th style={{ textAlign: "left", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Procedimento</th>
                 <th style={{ textAlign: "right", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Qtd</th>
                 <th style={{ textAlign: "right", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Receita</th>
-                <th style={{ textAlign: "right", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Custo Estimado</th>
-                <th style={{ textAlign: "right", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Margem</th>
-                <th style={{ textAlign: "right", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Margem %</th>
+                <th style={{ textAlign: "right", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Participação</th>
+                <th style={{ textAlign: "right", padding: "10px 12px", color: "var(--fg-2)", fontWeight: 600 }}>Ticket Médio</th>
               </tr>
             </thead>
             <tbody>
@@ -408,9 +400,15 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
                   <td style={{ padding: "10px 12px", maxWidth: 280, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.name}</td>
                   <td style={{ textAlign: "right", padding: "10px 12px", color: "var(--cyan)" }}>{row.qtd}</td>
                   <td style={{ textAlign: "right", padding: "10px 12px", color: "var(--green)" }}>{fmtV(row.receita)}</td>
-                  <td style={{ textAlign: "right", padding: "10px 12px", color: "var(--red)" }}>{fmtV(row.custoEstimado)}</td>
-                  <td style={{ textAlign: "right", padding: "10px 12px", color: sColor(row.margem) }}>{fmtV(row.margem)}</td>
-                  <td style={{ textAlign: "right", padding: "10px 12px", color: sColor(row.margem) }}>{row.margemPct.toFixed(1).replace(".",",")}%</td>
+                  <td style={{ textAlign: "right", padding: "10px 12px" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
+                      <div style={{ width: 60, height: 6, borderRadius: 3, background: "oklch(1 0 0 / 0.08)", overflow: "hidden" }}>
+                        <div style={{ width: `${Math.min(row.participacao, 100)}%`, height: "100%", borderRadius: 3, background: "var(--cyan)" }} />
+                      </div>
+                      <span style={{ minWidth: 44, color: "var(--cyan)" }}>{row.participacao.toFixed(1).replace(".",",")}%</span>
+                    </div>
+                  </td>
+                  <td style={{ textAlign: "right", padding: "10px 12px", color: "var(--violet)" }}>{fmtV(row.ticketMedio)}</td>
                 </tr>
               ))}
             </tbody>
