@@ -557,7 +557,7 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
           const saldoRange = maxSaldo - minSaldo || 1;
 
           const W = 1200;
-          const H = 480;
+          const H = 600;
           const padL = 70, padR = 20, padT = 30, padB = 50;
           const chartW = W - padL - padR;
           const chartH = H - padT - padB;
@@ -595,7 +595,7 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
 
           return (
             <div style={{ position: "relative" }}>
-              <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: 480, display: "block" }}
+              <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto", display: "block" }}
                 preserveAspectRatio="xMidYMid meet">
                 {/* Grid */}
                 {[0, 0.25, 0.5, 0.75, 1].map((p, gi) => {
@@ -701,46 +701,6 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
             </div>
           );
         })()}
-
-        {/* Tabela resumo do dia (sempre visível) */}
-        <div style={{ overflowX: "auto", marginTop: 16 }}>
-          <table className="tbl" style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-            <thead>
-              <tr style={{ borderBottom: "1px solid oklch(1 0 0 / 0.08)" }}>
-                <th style={{ textAlign: "left", padding: "8px 10px", color: "var(--fg-2)" }}>Dia</th>
-                <th style={{ textAlign: "right", padding: "8px 10px", color: "var(--green)" }}>Entrada</th>
-                <th style={{ textAlign: "right", padding: "8px 10px", color: "var(--red)" }}>Saída</th>
-                <th style={{ textAlign: "right", padding: "8px 10px", color: "#eab308" }}>Saldo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fluxoDiario.dias.map((d, i) => {
-                const isSelected = diaSelecionado === d;
-                return (
-                  <tr key={i} style={{
-                    borderBottom: "1px solid oklch(1 0 0 / 0.03)",
-                    background: isSelected ? "oklch(0.25 0.08 200 / 0.2)" :
-                      (fluxoDiario.saldos[i] < 0 ? "oklch(0.25 0.06 25 / 0.12)" : "transparent"),
-                    cursor: "pointer",
-                  }} onClick={() => setDiaSelecionado(prev => prev === d ? null : d)}>
-                    <td style={{ padding: "8px 10px", fontWeight: isSelected ? 700 : 400, color: isSelected ? "var(--cyan)" : "inherit" }}>
-                      {String(d).padStart(2, "0")}/{String(fluxoMes + 1).padStart(2, "0")}
-                    </td>
-                    <td style={{ textAlign: "right", padding: "8px 10px", color: "var(--green)" }}>
-                      {fluxoDiario.entradas[i] > 0 ? fmtV(fluxoDiario.entradas[i]) : "-"}
-                    </td>
-                    <td style={{ textAlign: "right", padding: "8px 10px", color: "var(--red)" }}>
-                      {fluxoDiario.saidas[i] > 0 ? fmtV(fluxoDiario.saidas[i]) : "-"}
-                    </td>
-                    <td style={{ textAlign: "right", padding: "8px 10px", fontWeight: 600, color: sColor(fluxoDiario.saldos[i]) }}>
-                      {fmtV(fluxoDiario.saldos[i])}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
 
         {/* Lançamentos do dia selecionado */}
         {diaSelecionado != null && (
