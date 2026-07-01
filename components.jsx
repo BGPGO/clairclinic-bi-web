@@ -46,6 +46,7 @@ const Sidebar = ({ active, onSelect, open }) => {
     { id: "tesouraria", icon: "treasury", label: "Tesouraria" },
     { id: "comparativo", icon: "compare", label: "Comparativo" },
     { id: "relatorio", icon: "fileText", label: "Relatório IA" },
+    { id: "gestao", icon: "invest", label: "Gestão Financeira" },
     { id: "orcamento", icon: "chart", label: "Orçamento" },
     { id: "dre", icon: "report", label: "DRE" },
     { id: "valuation", icon: "invest", label: "Valuation" },
@@ -89,7 +90,7 @@ const Sidebar = ({ active, onSelect, open }) => {
   return (
     <aside className={`sidebar ${open ? "open" : ""}`}>
       <div className="sb-brand">
-        <img src="assets/bgp-logo-white.png" alt="Clair Clinic" className="sb-logo-img" style={{ height: 64, width: "auto", borderRadius: 6 }} />
+        <img src="assets/logo-eximia.png" alt="Eximia - Clair Clinic" className="sb-logo-img" style={{ height: 64, width: "auto", borderRadius: 6 }} />
       </div>
       <div className="sb-section">Geral</div>
       {general.map(renderItem)}
@@ -116,6 +117,7 @@ const PAGE_TITLES = {
   tesouraria: "Tesouraria",
   comparativo: "Comparativo",
   relatorio: "Relatório IA",
+  gestao: "Gestão Financeira",
   faturamento_produto: "Faturamento por Produto",
   curva_abc: "Curva ABC de Produtos",
   marketing: "Marketing ADS",
@@ -197,7 +199,8 @@ const BI_EXPORT_PAGES = [
   { id: "tesouraria", label: "05 Tesouraria" },
   { id: "comparativo", label: "06 Comparativo" },
   { id: "relatorio", label: "07 Relatório IA" },
-  { id: "valuation", label: "08 Valuation" },
+  { id: "gestao", label: "08 Gestão Financeira" },
+  { id: "valuation", label: "09 Valuation" },
   { id: "indicators", label: "09 Indicadores" },
   { id: "faturamento_produto", label: "10 Faturamento por Produto" },
   { id: "curva_abc", label: "11 Curva ABC" },
@@ -292,7 +295,7 @@ const Header = ({ page, onToggleSidebar, statusFilter, setStatusFilter, year, se
     <header className="header">
       <button className="hd-icon-btn hd-menu-btn" title="Menu" onClick={onToggleSidebar}><Icon name="menu" /></button>
       <div className="breadcrumb">
-        <img src="assets/bgp-logo-white.png" alt="Clair Clinic" style={{ height: 36, width: "auto", borderRadius: 4, marginRight: 6 }} />
+        <img src="assets/logo-eximia.png" alt="Eximia - Clair Clinic" style={{ height: 36, width: "auto", borderRadius: 4, marginRight: 6 }} />
         <Icon name="chevronRight" />
         <span>BI Financeiro</span>
         <Icon name="chevronRight" />

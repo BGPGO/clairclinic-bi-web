@@ -23,6 +23,7 @@ const SOURCES = [
   'pages-2.jsx',
   'pages-3.jsx',
   'pages-4.jsx',
+  'page-gestao.jsx',
   'page-orcamento.jsx',
   'page-dre.jsx',
   'upsell-pages.jsx',
@@ -71,6 +72,7 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
     tesouraria: '06 Tesouraria',
     comparativo: '07 Comparativo',
     relatorio: '08 Relatório IA',
+    gestao: '09 Gestão Financeira',
     faturamento_produto: '09 Faturamento por Produto',
     curva_abc: '10 Curva ABC',
     marketing: '11 Marketing ADS',
@@ -400,6 +402,7 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
       tesouraria: PageTesouraria,
       comparativo: PageComparativo,
       relatorio: PageRelatorio,
+      gestao: PageGestao,
       faturamento_produto: PageFaturamentoProduto,
       curva_abc: PageCurvaABC,
       marketing: PageMarketing,
@@ -440,7 +443,7 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
             return (
               <div key={id + '-' + i} className="bi-print-page">
                 <div className="bi-print-header">
-                  <img src="assets/bgp-logo-white.png" alt="BGP" className="bi-print-logo" />
+                  <img src="assets/logo-eximia.png" alt="Eximia" className="bi-print-logo" />
                   <div className="bi-print-title">
                     <div className="bi-print-pagenum">{PAGE_LABELS[id] || id}</div>
                     <div className="bi-print-brand">BI Financeiro</div>
