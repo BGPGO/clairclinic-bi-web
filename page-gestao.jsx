@@ -372,6 +372,69 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
     };
   }, [B, mesesComDados, statusFilter, year, filters]);
 
+  // ── Export Excel ──
+  const exportXlsx = (sheetName, headers, rows) => {
+    if (typeof XLSX === "undefined") { alert("Biblioteca XLSX não carregada."); return; }
+    const data = [headers, ...rows];
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    ws["!cols"] = headers.map((h, i) => ({ wch: i === 0 ? 35 : 18 }));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetName.slice(0, 31));
+    XLSX.writeFile(wb, `${sheetName.replace(/[\/\\?*[\]]/g, "")}.xlsx`);
+  };
+
+  const exportProcedimentos = () => {
+    const headers = ["Procedimento", "Qtd", "Receita", "Participação %", "Ticket Médio"];
+    const rows = custoPorServico.map(r => [r.name, r.qtd, Math.round(r.receita), +(r.participacao.toFixed(1)), Math.round(r.ticketMedio)]);
+    exportXlsx("Receita por Procedimento", headers, rows);
+  };
+
+  const exportBreakeven = () => {
+    const headers = ["Mês", "Receita", "Custos", "Resultado do Mês", "Resultado Acumulado", "Atingido"];
+    const rows = breakeven.map(r => [r.mes, Math.round(r.receita), Math.round(r.custos), Math.round(r.resultadoMes), Math.round(r.resultadoAcumulado), r.atingido && r.resultadoAcumulado > 0 ? "Sim" : "Não"]);
+    exportXlsx("Breakeven Evolutivo", headers, rows);
+  };
+
+  const exportCapitalGiro = () => {
+    const headers = ["Mês", "Saldo Inicial", "Maior Déficit", "CG Necessário", "CG Suficiente"];
+    const rows = capitalGiro.map(r => [r.mes, Math.round(r.saldoInicial), Math.round(r.maiorDeficit), Math.round(r.cgNecessario), r.suficiente]);
+    exportXlsx("Capital de Giro", headers, rows);
+  };
+
+  const exportFluxoDiario = () => {
+    const { entradas, saidas, saldos, dias } = fluxoDiario;
+    const mesStr = String(fluxoMes + 1).padStart(2, "0");
+    const headers = ["Dia", "Entrada", "Saída", "Saldo"];
+    const rows = dias.map((d, i) => [
+      `${String(d).padStart(2, "0")}/${mesStr}`,
+      Math.round(entradas[i]),
+      Math.round(saidas[i]),
+      Math.round(saldos[i]),
+    ]);
+    exportXlsx(`Fluxo Caixa Diário ${MESES_LABEL[fluxoMes]}`, headers, rows);
+  };
+
+  const exportPontoEquilibrio = () => {
+    const pe = pontoEquilibrio;
+    const headers = ["Mês", "Receita do Mês", "PEC", "Dia Atingido", "Status"];
+    const rows = pe.pesPorMes.map(r => [r.mes, Math.round(r.receitaTotal), Math.round(pe.pec), r.dia || "—", r.dia ? "Atingido" : "Não atingido"]);
+    // Adicionar linha em branco + resumo do cálculo
+    rows.push([]);
+    rows.push(["Receita Mensal Média", Math.round(pe.receitaMensal)]);
+    rows.push(["Custos Variáveis Mensal", Math.round(pe.custosVariaveisMensal)]);
+    rows.push(["Margem de Contribuição", Math.round(pe.margemContribuicao), `${pe.margemContribuicaoPct.toFixed(0)}%`]);
+    rows.push(["Despesas Fixas Mensal", Math.round(pe.custosFixosMensal)]);
+    rows.push(["PEC (Ponto de Equilíbrio)", Math.round(pe.pec)]);
+    exportXlsx("Ponto de Equilíbrio", headers, rows);
+  };
+
+  const ExportBtn = ({ onClick }) => (
+    <button className="btn-ghost" onClick={onClick} title="Exportar para Excel"
+      style={{ marginLeft: "auto", fontSize: 11, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}>
+      <Icon name="download" style={{ width: 14, height: 14 }} /> Excel
+    </button>
+  );
+
   // ── Render ──
   const sColor = (v) => v >= 0 ? "var(--green)" : "var(--red)";
   const fmtV = (v) => fmt(v, { dec: 0 });
@@ -382,7 +445,7 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
 
       {/* ════════════ 1. RECEITA POR PROCEDIMENTO/SERVIÇO ════════════ */}
       <div className="card" style={{ padding: 24 }}>
-        <h2 className="card-title">Receita por Procedimento / Serviço</h2>
+        <h2 className="card-title" style={{ display: "flex", alignItems: "center" }}>Receita por Procedimento / Serviço <ExportBtn onClick={exportProcedimentos} /></h2>
         <div style={{ overflowY: "auto", maxHeight: 420 }}>
           <table className="tbl" style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
             <thead style={{ position: "sticky", top: 0, background: "oklch(0.16 0.01 240)", zIndex: 1 }}>
@@ -418,7 +481,7 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
 
       {/* ════════════ 2. BREAKEVEN EVOLUTIVO ════════════ */}
       <div className="card" style={{ padding: 24 }}>
-        <h2 className="card-title">Breakeven Evolutivo</h2>
+        <h2 className="card-title" style={{ display: "flex", alignItems: "center" }}>Breakeven Evolutivo <ExportBtn onClick={exportBreakeven} /></h2>
         {mesBreakeven && (
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 8,
@@ -474,7 +537,7 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
 
       {/* ════════════ 3. CAPITAL DE GIRO ════════════ */}
       <div className="card" style={{ padding: 24 }}>
-        <h2 className="card-title">Capital de Giro</h2>
+        <h2 className="card-title" style={{ display: "flex", alignItems: "center" }}>Capital de Giro <ExportBtn onClick={exportCapitalGiro} /></h2>
         <p style={{ color: "var(--fg-2)", fontSize: 13, marginBottom: 16 }}>
           Análise de suficiência do capital de giro mensal — verifica se o saldo inicial cobre os déficits operacionais.
         </p>
@@ -525,6 +588,7 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
       <div className="card" style={{ padding: 24 }}>
         <h2 className="card-title" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           Fluxo de Caixa Diário
+          <ExportBtn onClick={exportFluxoDiario} />
           <select
             className="header-year"
             value={fluxoMes}
@@ -761,7 +825,7 @@ const PageGestao = ({ filters, setFilters, statusFilter, drilldown, setDrilldown
 
       {/* ════════════ 5. PONTO DE EQUILÍBRIO SEM DEPRECIAÇÃO ════════════ */}
       <div className="card" style={{ padding: 24 }}>
-        <h2 className="card-title">Ponto de Equilíbrio (sem depreciação)</h2>
+        <h2 className="card-title" style={{ display: "flex", alignItems: "center" }}>Ponto de Equilíbrio (sem depreciação) <ExportBtn onClick={exportPontoEquilibrio} /></h2>
 
         {/* Cálculo demonstrativo */}
         <div style={{
