@@ -242,9 +242,93 @@ const PageDreGerencial = ({ filters, setFilters, statusFilter, drilldown, setDri
   // Separator border style
   const sepL = "2px solid oklch(1 0 0 / 0.06)";
 
+  // ── Export Excel ──
+  const exportDreXlsx = () => {
+    if (typeof XLSX === "undefined") { alert("Biblioteca XLSX não carregada."); return; }
+    const y = year || window.REF_YEAR;
+    const fvNum = v => Math.round(v);
+    const fpNum = (v, base) => base ? +((v / base * 100).toFixed(1)) : 0;
+
+    // Build header row
+    const header = ["Item DRE"];
+    for (const tri of trimAtivos) {
+      const mm = tri.meses.filter(m => mesesAtivos.includes(m));
+      mm.forEach(m => header.push(ML[m]));
+      header.push("Acum " + tri.label, "%");
+    }
+    header.push("Total", "%", "Média");
+
+    const rows = [];
+    const addRow = (label, computeFn, indent) => {
+      const row = [(indent ? "  " : "") + label];
+      for (const tri of trimAtivos) {
+        const mm = tri.meses.filter(m => mesesAtivos.includes(m));
+        mm.forEach(m => row.push(fvNum(computeFn(dreData.monthData[m]))));
+        const acum = computeFn(makeD(mm));
+        const recTri = mm.reduce((s, m) => s + recM(m), 0);
+        row.push(fvNum(acum), fpNum(acum, recTri) + "%");
+      }
+      const acumAll = computeFn(makeD(mesesAtivos));
+      const recAll = mesesAtivos.reduce((s, m) => s + recM(m), 0);
+      const media = mesesAtivos.length ? acumAll / mesesAtivos.length : 0;
+      row.push(fvNum(acumAll), fpNum(acumAll, recAll) + "%", fvNum(media));
+      rows.push(row);
+    };
+
+    for (const sec of DRE_SECTIONS) {
+      if (sec.type === "result") {
+        addRow(sec.label, sec.compute, false);
+        rows.push([]);
+        continue;
+      }
+      rows.push([sec.header]);
+      for (const item of sec.items) {
+        const fn = d => d[item.id] || 0;
+        addRow(item.label, fn, true);
+        // Add detail categories
+        if (item.expandable && dreData.catDetail[item.id]) {
+          const cats = Object.keys(dreData.catDetail[item.id])
+            .map(c => ({ c, t: (dreData.catDetail[item.id][c] || []).reduce((s, v) => s + v, 0) }))
+            .sort((a, b) => b.t - a.t);
+          for (const { c } of cats) {
+            const vals = dreData.catDetail[item.id][c] || Array(12).fill(0);
+            const row = ["    " + c.replace(/^\d+\.\d+\.\d+[\.\d]*\s*-?\s*/, "")];
+            for (const tri of trimAtivos) {
+              const mm = tri.meses.filter(m => mesesAtivos.includes(m));
+              mm.forEach(m => row.push(fvNum(vals[m])));
+              const acum = mm.reduce((s, m) => s + vals[m], 0);
+              const recTri = mm.reduce((s, m) => s + recM(m), 0);
+              row.push(fvNum(acum), acum > 0 ? fpNum(acum, recTri) + "%" : "");
+            }
+            const acumAll = mesesAtivos.reduce((s, m) => s + vals[m], 0);
+            const recAll = mesesAtivos.reduce((s, m) => s + recM(m), 0);
+            const media = mesesAtivos.length ? acumAll / mesesAtivos.length : 0;
+            row.push(fvNum(acumAll), acumAll > 0 ? fpNum(acumAll, recAll) + "%" : "", fvNum(media));
+            rows.push(row);
+          }
+        }
+      }
+      if (sec.subtotal) addRow(sec.subtotal.label, sec.subtotal.compute, false);
+      rows.push([]);
+    }
+
+    const data = [header, ...rows];
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    ws["!cols"] = header.map((_, i) => ({ wch: i === 0 ? 40 : 14 }));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "DRE Gerencial");
+    XLSX.writeFile(wb, `DRE Gerencial ${y}.xlsx`);
+  };
+
   return (
     <div className="page">
-      <div className="page-title"><h1>DRE Gerencial</h1></div>
+      <div className="page-title" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <h1>DRE Gerencial</h1>
+        <button className="btn-ghost" onClick={exportDreXlsx} title="Exportar DRE para Excel"
+          style={{ marginLeft: "auto", fontSize: 11, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}>
+          <Icon name="download" style={{ width: 14, height: 14 }} /> Excel
+        </button>
+      </div>
       <div className="card" style={{ padding: 0 }}>
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 800 }}>
