@@ -1,4 +1,4 @@
-/* BGP BI — gerado por build-data.cjs em 2026-07-31T15:00:23.946Z */
+/* BGP BI — gerado por build-data.cjs em 2026-08-03T12:23:11.705Z */
 /* Empresa: Clair Clinic | Ano ref: 2026 */
 const MONTHS = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
 const MONTHS_FULL = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
@@ -23,7 +23,7 @@ const META = {
   "empresa": {
     "nome_fantasia": "Clair Clinic"
   },
-  "fetched_at": "2026-07-31T15:00:23.158Z",
+  "fetched_at": "2026-08-03T12:23:08.506Z",
   "ref_year": 2026,
   "counts": {
     "contas_pagar": 0,
